@@ -1,0 +1,124 @@
+body {
+  background: radial-gradient(circle at top, #1a0008, #050000);
+  color: #f5e6c8;
+  font-family: "Segoe UI", Arial, sans-serif;
+  display: flex;
+  justify-content: center;
+}
+
+.head {
+  text-align: center;
+  margin: 30px 0;
+}
+
+.head h1 {
+  color: #d4af37;
+  letter-spacing: 2px;
+  text-shadow: 0 0 10px rgba(212, 175, 55, 0.4);
+}
+
+.box1 {
+  background: linear-gradient(145deg, #120005, #1a0008);
+  width: 420px;
+  margin: 25px auto;
+  padding: 22px;
+  border-radius: 14px;
+  border: 1px solid rgba(212, 175, 55, 0.25);
+  box-shadow: 0 0 25px rgba(120, 0, 20, 0.6);
+}
+
+.box1 h2 {
+  color: #b11226;
+  margin-bottom: 15px;
+}
+
+.box2,
+.box3,
+.box4 {
+  margin-bottom: 14px;
+}
+
+p {
+  margin-bottom: 6px;
+  color: #e6d8b5;
+}
+
+input {
+  width: 100%;
+  padding: 8px;
+  border-radius: 8px;
+  border: 1px solid #5c0a18;
+  background: #0d0003;
+  color: #f5e6c8;
+}
+
+input:focus {
+  outline: none;
+  border-color: #d4af37;
+  box-shadow: 0 0 8px rgba(212, 175, 55, 0.5);
+}
+
+input[type="button"] {
+  margin-top: 15px;
+  background: linear-gradient(135deg, #7a0018, #b11226);
+  color: #f5e6c8;
+  padding: 12px;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+  letter-spacing: 1px;
+  box-shadow: 0 0 12px rgba(177, 18, 38, 0.8);
+}
+
+input[type="button"]:hover {
+  background: linear-gradient(135deg, #b11226, #d4af37);
+  color: #050000;
+}
+
+.anime-list {
+  list-style: none;
+  padding: 0;
+}
+
+.anime-list li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: linear-gradient(135deg, #0b0002, #180006);
+  padding: 12px;
+  margin-bottom: 10px;
+  border-radius: 10px;
+  border-left: 4px solid #b11226;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.anime-list li:hover {
+  transform: translateX(4px);
+  box-shadow: 0 0 15px rgba(212, 175, 55, 0.4);
+}
+
+.rank {
+  width: 28px;
+  font-weight: bold;
+  color: #d4af37;
+}
+
+.emoji {
+  font-size: 22px;
+}
+
+button {
+  margin-left: auto;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 18px;
+  color: #d4af37;
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+
+button:hover {
+  color: #b11226;
+  transform: scale(1.2);
+}
