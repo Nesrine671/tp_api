@@ -47,31 +47,43 @@ function App() {
 
   // render
   return (
-    <div>
-      <h1>Ma top liste d'animes</h1>
+    <div className="app">
+  <h1>Ma top liste d'animes</h1>
 
-      <input
-        placeholder="Nom de l'anime"
-        value={name}
-        onChange={(e) => setName(e.target.value)}
-      />
+  <div className="form">
+    <input
+      placeholder="Nom de l'anime"
+      value={name}
+      onChange={(e) => setName(e.target.value)}
+    />
 
-      <input
-        type="number"
-        placeholder="Rang"
-        value={rank}
-        onChange={(e) => setRank(e.target.value)}
-      />
+    <input
+      type="number"
+      placeholder="Rang"
+      value={rank}
+      onChange={(e) => setRank(e.target.value)}
+    />
 
-      <button onClick={handleAdd}>Ajouter</button>
+    <button onClick={handleAdd}>Ajouter</button>
+  </div>
 
-      <ul>
-        {animes.map((anime) => (
-          <li key={anime.id}>
-            {anime.rank} - {anime.image} {anime.name}
-            <button onClick={() => handleDelete(anime.id)}>❌</button>
-          </li>
-        ))}
+  <ul className="anime-list">
+    {animes.map((anime) => (
+      <li key={anime.id}>
+        <span className="rank">
+          {anime.rank === 0 ? "-" : anime.rank}
+        </span>
+
+        <span className="emoji">{anime.image}</span>
+
+        <span className="name">{anime.name}</span>
+
+        <button onClick={() => handleDelete(anime.id)}>❌</button>
+      </li>
+    ))}
+  </ul>
+</div>
+        )
       </ul>
     </div>
   );
