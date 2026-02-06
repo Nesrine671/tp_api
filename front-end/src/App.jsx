@@ -1,115 +1,80 @@
-import { useEffect, useState } from "react";  
-import "./App.css";  
+import { useEffect, useState } from "react";
+import "./App.css";
 
-const API = "http://localhost:3000/api/animes";  
+const API = "http://localhost:3000/api/animes";
 
-export default function App() {  
-  const [animes, setAnimes] = useState([]);  
-  const [name, setName] = useState("");  
-  const [rank, setRank] = useState("");  
-  const [image, setImage] = useState("");  
+function App() {
+  // states
+  const [animes, setAnimes] = useState([]);
+  const [name, setName] = useState("");
+  const [rank, setRank] = useState("");
 
-  // Load animes  
-  const fetchAnimes = async () => {  
-    const res = await fetch(API);  
-    const data = await res.json();  
-    setAnimes(data);  
-  };  
+  // get – récupérer les animés
+  const fetchAnimes = async () => {
+    const res = await fetch(API);
+    const data = await res.json();
+    setAnimes(data);
+  };
 
-  useEffect(() => {  
-    fetchAnimes();  
-  }, []);  
+  useEffect(() => {
+    fetchAnimes();
+  }, []);
 
-  // Add an anime  
-  const handleAdd = async () => {  
-    if (!name.trim()) return alert("Name is required");  
+  // post – ajouter un animé
+  const handleAdd = async () => {
+    if (!name) return alert("Nom obligatoire");
 
-    await fetch(API, {  
-      method: "POST",  
-      headers: { "Content-Type": "application/json" },  
-      body: JSON.stringify({  
-        name,  
-        rank: rank === "" ? 0 : Number(rank),  
-        image: image || "🎬",  
-      }),  
-    });  
+    await fetch(API, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        name,
+        rank: rank ? Number(rank) : 0,
+        image: "🎬"
+      })
+    });
 
-    setName("");  
-    setRank("");  
-    setImage("");  
-    fetchAnimes();  
-  };  
+    setName("");
+    setRank("");
+    fetchAnimes();
+  };
 
-  // Update rank  
-  const handleUpdateRank = async (id, currentRank) => {  
-    const v = prompt("New rank (0-10)", currentRank);  
-    if (v === null) return;  
+  // delete – supprimer un animé
+  const handleDelete = async (id) => {
+    await fetch(`${API}/${id}`, { method: "DELETE" });
+    fetchAnimes();
+  };
 
-    await fetch(`${API}/${id}`, {  
-      method: "PUT",  
-      headers: { "Content-Type": "application/json" },  
-      body: JSON.stringify({ rank: Number(v) }),  
-    });  
+  // render
+  return (
+    <div>
+      <h1>Ma top liste d'animes</h1>
 
-    fetchAnimes();  
-  };  
+      <input
+        placeholder="Nom de l'anime"
+        value={name}
+        onChange={(e) => setName(e.target.value)}
+      />
 
-  // Delete  
-  const handleDelete = async (id, name) => {  
-    if (!confirm(`Delete "${name}"?`)) return;  
+      <input
+        type="number"
+        placeholder="Rang"
+        value={rank}
+        onChange={(e) => setRank(e.target.value)}
+      />
 
-    await fetch(`${API}/${id}`, { method: "DELETE" });  
-    fetchAnimes();  
-  };  
+      <button onClick={handleAdd}>Ajouter</button>
 
-  return (  
-    <>  
-      <div className="head">  
-        <h1>Ma top liste d'anime</h1>  
-      </div>  
+      <ul>
+        {animes.map((anime) => (
+          <li key={anime.id}>
+            {anime.rank} - {anime.image} {anime.name}
+            <button onClick={() => handleDelete(anime.id)}>❌</button>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+}
 
-      <div className="box1">  
-        <h2>Ajouter un anime</h2>  
-
-        <div className="box2">  
-          <p>Titre de l'animer</p>  
-          <input value={name} onChange={(e) => setName(e.target.value)} />  
-        </div>  
-
-        <div className="box3">  
-          <p>Rang (0-10)</p>  
-          <input  
-            type="number"  
-            value={rank}  
-            onChange={(e) => setRank(e.target.value)}  
-          />  
-        </div>  
-
-        <input type="button" value="Add" onClick={handleAdd} />  
-      </div>  
-
-      <div className="box1">  
-        <h2>Ma Liste</h2>  
-
-        <ul className="anime-list">  
-          {animes.map((anime) => (  
-            <li key={anime.id}>  
-              <span className="rank">  
-                {anime.rank === 0 ? "-" : anime.rank}.  
-              </span>  
-              <span className="emoji">{anime.image}</span>  
-              <span className="name">{anime.name}</span>  
-
-              <button onClick={() => handleUpdateRank(anime.id, anime.rank)}>  
-                Edit  
-              </button>  
-              <button onClick={() => handleDelete(anime.id, anime.name)}>  
-                Supprimer  
-              </button>  
-            </li>  
-          ))}  
-        </ul>  
-      </div>  
-    </>  
-  );  
-}  
+export default App;
