@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+/*import { useEffect, useState } from "react";
 import "./App.css";
 
 const API = "http://localhost:3000/api/animes";
@@ -86,4 +86,4 @@ function App() {
         )
 }
 
-export default App;
+export default App;*/
