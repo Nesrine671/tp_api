@@ -17,16 +17,15 @@ let animes = [
     { id: 5, name: "Given", rank: 5, image: "🎸" }
   ];
 
-// =======================
+
 // GET – AFFICHER LES ANIMES
-// =======================
 app.get("/api/animes", (req, res) => {
   res.json(animes);
 });
 
-// =======================
+
 // POST – AJOUTER UN ANIME
-// =======================
+
 app.post("/api/animes", (req, res) => {
   const animeAAjouter = req.body;
 
@@ -43,9 +42,9 @@ app.post("/api/animes", (req, res) => {
   res.status(201).json(animeAAjouter);
 });
 
-// =======================
+
 // PUT – MODIFIER UN ANIME
-// =======================
+
 app.put("/api/animes/:id", (req, res) => {
   const id = parseInt(req.params.id);
   const newData = req.body;
@@ -70,9 +69,9 @@ app.put("/api/animes/:id", (req, res) => {
   res.json(animesCopy[animeIndex]);
 });
 
-// =======================
+
 // DELETE – SUPPRIMER UN ANIME
-// =======================
+
 app.delete("/api/animes/:id", (req, res) => {
   const id = parseInt(req.params.id);
 
