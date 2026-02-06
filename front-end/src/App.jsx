@@ -84,9 +84,6 @@ function App() {
   </ul>
 </div>
         )
-      </ul>
-    </div>
-  );
 }
 
 export default App;
