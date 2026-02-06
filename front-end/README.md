@@ -18,7 +18,7 @@ If you are developing a production application, we recommend using TypeScript wi
 
 
 
-# 🎌 Anime Top List
+#Anime Top List
 
 Anime Top List est une application web qui permet à un utilisateur de gérer sa liste d’animés préférés et de la partager facilement avec d’autres personnes.
 
@@ -30,7 +30,7 @@ L’utilisateur peut :
 
 ---
 
-## 🛠️ Technologies utilisées
+## Technologies utilisées
 
 ### Frontend
 - React
@@ -46,9 +46,9 @@ L’utilisateur peut :
 
 ---
 
-## 🚀 Installation
+## Installation
 
 ### 1. Cloner le projet
-```bash
+bash
 git clone <url-du-repo>
 cd anime-top-list
